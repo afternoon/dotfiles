@@ -172,9 +172,9 @@ require("lazy").setup({
       opts = {
         style = "darker"
       },
-      config = {
-        require("onedark").load()
-      }
+      config = function ()
+        vim.cmd([[colorscheme onedark]])
+      end
     },
 
     -- fancy bracket completion
