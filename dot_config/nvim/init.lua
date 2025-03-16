@@ -310,4 +310,7 @@ require("mason-lspconfig").setup({
   },
 })
 
-vim.cmd([[colorscheme onedark]])
+require('onedark').setup {
+  style = 'darker'
+}
+require('onedark').load()
