@@ -169,9 +169,7 @@ require("lazy").setup({
       "navarasu/onedark.nvim",
       lazy = false,
       priority = 1000,
-      opts = {
-        style = "darker"
-      },
+      opts = { style = "darker" },
       config = function ()
         vim.cmd([[colorscheme onedark]])
       end
@@ -311,3 +309,5 @@ require("mason-lspconfig").setup({
     end,
   },
 })
+
+vim.cmd([[colorscheme onedark]])
