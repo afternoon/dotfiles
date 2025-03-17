@@ -1,14 +1,14 @@
+export LOCAL_PREFIX=${HOMEBREW_PREFIX:-/usr/local}
+export EDITOR="$LOCAL_PREFIX/bin/nvim"
+export PATH="$PATH:/Users/ben/.local/bin"
+
 autoload -Uz compinit
 compinit
 
-export HOMEBREW_PREFIX=${HOMEBREW_PREFIX:-/usr/local}
-
-source $HOMEBREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $LOCAL_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 PS1="
 ▶ %F{81}%U%~%u%f %F{8}$%f "
 
-export PATH="$PATH:/Users/ben/.local/bin"
-
-alias vi="$HOMEBREW_PREFIX/bin/nvim"
+alias vi="$EDITOR"
 alias ls="ls -F --color"
