@@ -196,6 +196,9 @@ require("lazy").setup({
     { "tpope/vim-surround" },
     { "tpope/vim-unimpaired" },
 
+    -- tpope: AI plugin artist
+    { "github/copilot.vim" },
+
     -- auto-save
     { "pocco81/auto-save.nvim" },
 
