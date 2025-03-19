@@ -33,6 +33,9 @@ config.colors = {
   }
 }
 
+config.initial_cols = 160
+config.initial_rows = 48
+
 config.window_padding = {
   left = 0,
   right = 0,
@@ -46,11 +49,6 @@ config.send_composed_key_when_left_alt_is_pressed = true
 config.window_close_confirmation = 'NeverPrompt'
 
 config.native_macos_fullscreen_mode = true
-
-wezterm.on("gui-startup", function()
-  local tab, pane, window = mux.spawn_window(cmd or {})
-  window:gui_window():toggle_fullscreen()
-end)
 
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 

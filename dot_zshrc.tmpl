@@ -2,21 +2,15 @@ export LOCAL_PREFIX=${HOMEBREW_PREFIX:-/usr/local}
 export EDITOR="$LOCAL_PREFIX/bin/nvim"
 export PATH="$PATH:/Users/ben/.local/bin"
 
+PS1="
+▶ {{ if ne .chezmoi.os "darwin" }}{{ if eq .chezmoi.username "root" }}%F{160}%m%f{{ else }}%F{220}%m%f{{ end }} {{ end }}%F{81}%3~%f %F{8}$%f "
+
 autoload -Uz compinit
 compinit
 
-source $LOCAL_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-{{- if eq .chezmoi.username "root" }}
-PS1="
-▶ %F{160}%m%f %F{81}%3~%f %F{8}$%f "
-{{- else if eq .chezmoi.os "darwin" }}
-PS1="
-▶ %F{81}%3~%f %F{8}$%f "
-{{- else -}}
-PS1="
-▶ %F{220}%m%f %F{81}%3~%f %F{8}$%f "
-{{- end }}
+if [ -e $LOCAL_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+  source $LOCAL_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
 
 alias vi="$EDITOR"
 alias ls="ls -F --color"
