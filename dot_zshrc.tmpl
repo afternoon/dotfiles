@@ -5,6 +5,14 @@ export PATH="$PATH:/Users/ben/.local/bin"
 PS1="
 ▶ {{ if ne .chezmoi.os "darwin" }}{{ if eq .chezmoi.username "root" }}%F{160}%m%f{{ else }}%F{220}%m%f{{ end }} {{ end }}%F{81}%3~%f %F{8}$%f "
 
+if [ -e "$HOME/.cargo/env" ]; then
+  source "$HOME/.cargo/env"
+fi
+
+if [ -e $(which rbenv) ]; then
+  eval "$(rbenv init -)"
+fi
+
 autoload -Uz compinit
 compinit
 
