@@ -229,56 +229,59 @@ require("lazy").setup({
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
 
+    -- astro lang plugin
+    { 'wuelnerdotexe/vim-astro' },
+
     -- completion + snippets
-    {
-      "hrsh7th/nvim-cmp",
-      event = 'InsertEnter',
-      dependencies = {
-        { 'L3MON4D3/LuaSnip', version = "v2.*" },
-        { 'rafamadriz/friendly-snippets' },
-        { "saadparwaiz1/cmp_luasnip", },
-        { "hrsh7th/cmp-buffer" },
-        { "hrsh7th/cmp-nvim-lsp" },
-        { "hrsh7th/cmp-nvim-lua" },
-        { "hrsh7th/cmp-path" },
-      },
-      config = function()
-        local cmp = require("cmp")
-        local cmp_action = require("lsp-zero").cmp_action()
+    -- {
+    --   "hrsh7th/nvim-cmp",
+    --   event = 'InsertEnter',
+    --   dependencies = {
+    --     { 'L3MON4D3/LuaSnip', version = "v2.*" },
+    --     { 'rafamadriz/friendly-snippets' },
+    --     { "saadparwaiz1/cmp_luasnip", },
+    --     { "hrsh7th/cmp-buffer" },
+    --     { "hrsh7th/cmp-nvim-lsp" },
+    --     { "hrsh7th/cmp-nvim-lua" },
+    --     { "hrsh7th/cmp-path" },
+    --   },
+    --   config = function()
+    --     local cmp = require("cmp")
+    --     local cmp_action = require("lsp-zero").cmp_action()
 
-        require("luasnip.loaders.from_vscode").lazy_load()
+    --     require("luasnip.loaders.from_vscode").lazy_load()
 
-        cmp.setup({
-          sources = {
-            { name = "nvim_lsp" },
-            { name = "nvim_lua" },
-            { name = "luasnip" },
-            { name = "path" },
-            { name = "buffer" },
-          },
-          mapping = cmp.mapping.preset.insert({
-            -- `Enter` key to confirm completion
-            ["<CR>"] = cmp.mapping.confirm({select = false}),
+    --     cmp.setup({
+    --       sources = {
+    --         { name = "nvim_lsp" },
+    --         { name = "nvim_lua" },
+    --         { name = "luasnip" },
+    --         { name = "path" },
+    --         { name = "buffer" },
+    --       },
+    --       mapping = cmp.mapping.preset.insert({
+    --         -- `Enter` key to confirm completion
+    --         ["<CR>"] = cmp.mapping.confirm({select = false}),
 
-            -- supertab
-            ["<Tab>"] = cmp_action.luasnip_supertab(),
-            ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+    --         -- supertab
+    --         ["<Tab>"] = cmp_action.luasnip_supertab(),
+    --         ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 
-            -- Ctrl+Space to trigger completion menu
-            ["<C-Space>"] = cmp.mapping.complete(),
+    --         -- Ctrl+Space to trigger completion menu
+    --         ["<C-Space>"] = cmp.mapping.complete(),
 
-            -- Navigate between snippet placeholder
-            ["<C-f>"] = cmp_action.vim_snippet_jump_forward(),
-            ["<C-b>"] = cmp_action.vim_snippet_jump_backward(),
-          }),
-          snippet = {
-            expand = function(args)
-              require("luasnip").lsp_expand(args.body)
-            end,
-          },
-        })
-      end
-    },
+    --         -- Navigate between snippet placeholder
+    --         ["<C-f>"] = cmp_action.vim_snippet_jump_forward(),
+    --         ["<C-b>"] = cmp_action.vim_snippet_jump_backward(),
+    --       }),
+    --       snippet = {
+    --         expand = function(args)
+    --           require("luasnip").lsp_expand(args.body)
+    --         end,
+    --       },
+    --     })
+    --   end
+    -- },
   },
 
   -- Configure any other settings here. See the documentation for more details.
@@ -294,24 +297,24 @@ require("lazy").setup({
 })
 
 -- configure lspzero
-local lsp_zero = require("lsp-zero")
-lsp_zero.extend_lspconfig({
-  sign_text = true,
-  lsp_attach = function(client, bufnr)
-    lsp_zero.default_keymaps({ buffer = bufnr })
-  end,
-  capabilities = require("cmp_nvim_lsp").default_capabilities(),
-})
+-- local lsp_zero = require("lsp-zero")
+-- lsp_zero.extend_lspconfig({
+--   sign_text = true,
+--   lsp_attach = function(client, bufnr)
+--     lsp_zero.default_keymaps({ buffer = bufnr })
+--   end,
+--   capabilities = require("cmp_nvim_lsp").default_capabilities(),
+-- })
 
--- configure mason
-require("mason").setup({})
-require("mason-lspconfig").setup({
-  handlers = {
-    function(server_name)
-      require("lspconfig")[server_name].setup({})
-    end,
-  },
-})
+-- -- configure mason
+-- require("mason").setup({})
+-- require("mason-lspconfig").setup({
+--   handlers = {
+--     function(server_name)
+--       require("lspconfig")[server_name].setup({})
+--     end,
+--   },
+-- })
 
 require('onedark').setup {
   style = 'darker'
