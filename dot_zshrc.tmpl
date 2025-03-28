@@ -9,10 +9,6 @@ if [ -e "$HOME/.cargo/env" ]; then
   source "$HOME/.cargo/env"
 fi
 
-if [ -e $(which rbenv) ]; then
-  eval "$(rbenv init -)"
-fi
-
 autoload -Uz compinit
 compinit
 
