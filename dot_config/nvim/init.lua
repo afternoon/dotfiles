@@ -1,5 +1,5 @@
 --
--- @afternoon's neovim config 2024
+-- @afternoon's neovim config 2024-2025
 --
 
 --
@@ -60,7 +60,7 @@ local map = function(key)
   -- get the extra options
   local opts = {noremap = true, silent = true}
   for i, v in pairs(key) do
-    if type(i) == 'string' then opts[i] = v end
+    if type(i) == "string" then opts[i] = v end
   end
 
   -- basic support for buffer-scoped keybindings
@@ -175,12 +175,8 @@ require("lazy").setup({
       end
     },
 
-    -- fancy bracket completion
-    {
-      "windwp/nvim-autopairs",
-      event = "InsertEnter",
-      config = true
-    },
+    -- auto-save
+    { "pocco81/auto-save.nvim" },
 
     -- fancy fuzzy finding
     {
@@ -189,24 +185,18 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" }
     },
 
-    -- tpope: Vim plugin artist
+    -- tpope: vim plugin artist
     { "tpope/vim-abolish" },
     { "tpope/vim-commentary" },
     { "tpope/vim-repeat" },
     { "tpope/vim-surround" },
     { "tpope/vim-unimpaired" },
 
-    -- tpope: AI plugin artist
-    { "github/copilot.vim" },
-
-    -- auto-save
-    { "pocco81/auto-save.nvim" },
-
     -- file tree viewer
     {
       "kyazdani42/nvim-tree.lua",
       dependencies = { "kyazdani42/nvim-web-devicons" },
-      opts = {}
+      opts = {},
     },
 
     -- git info in gutter
@@ -215,18 +205,32 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" },
     },
 
-    -- syntax highlight EVERYTHING
-    {
-      "nvim-treesitter/nvim-treesitter".
-      opts = {
-        highlight = {
-          enable = true,
-        },
-      }
-    },
-
     -- highlight/strip trailing whitespace
     { "ntpeters/vim-better-whitespace" },
+
+    -- syntax highlight everything
+    -- see config below, apparently using lazy.nvim opts doesn't work
+    {
+      "nvim-treesitter/nvim-treesitter",
+      build = ":TSUpdate",
+      lazy = false,
+    },
+
+    -- fancy bracket completion
+    {
+      "windwp/nvim-autopairs",
+      event = "InsertEnter",
+      config = true,
+    },
+
+    -- fancy HTML tag completion - requires nvim-treesitter
+    {
+      "windwp/nvim-ts-autotag",
+      config = true,
+    },
+
+    -- tpope: ai plugin artist
+    { "github/copilot.vim" },
 
     -- lsp-zero v4
     { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
@@ -236,14 +240,11 @@ require("lazy").setup({
     { "williamboman/mason.nvim" },
     { "williamboman/mason-lspconfig.nvim" },
 
-    -- completion + snippets
+    -- additional completions
     {
       "hrsh7th/nvim-cmp",
-      event = 'InsertEnter',
+      event = "InsertEnter",
       dependencies = {
-        { 'L3MON4D3/LuaSnip', version = "v2.*" },
-        { 'rafamadriz/friendly-snippets' },
-        { "saadparwaiz1/cmp_luasnip", },
         { "hrsh7th/cmp-buffer" },
         { "hrsh7th/cmp-nvim-lsp" },
         { "hrsh7th/cmp-nvim-lua" },
@@ -253,35 +254,12 @@ require("lazy").setup({
         local cmp = require("cmp")
         local cmp_action = require("lsp-zero").cmp_action()
 
-        require("luasnip.loaders.from_vscode").lazy_load()
-
         cmp.setup({
           sources = {
             { name = "nvim_lsp" },
             { name = "nvim_lua" },
-            { name = "luasnip" },
             { name = "path" },
             { name = "buffer" },
-          },
-          mapping = cmp.mapping.preset.insert({
-            -- `Enter` key to confirm completion
-            ["<CR>"] = cmp.mapping.confirm({select = false}),
-
-            -- supertab
-            -- ["<Tab>"] = cmp_action.luasnip_supertab(),
-            -- ["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
-
-            -- Ctrl+Space to trigger completion menu
-            ["<C-Space>"] = cmp.mapping.complete(),
-
-            -- Navigate between snippet placeholder
-            ["<C-f>"] = cmp_action.vim_snippet_jump_forward(),
-            ["<C-b>"] = cmp_action.vim_snippet_jump_backward(),
-          }),
-          snippet = {
-            expand = function(args)
-              require("luasnip").lsp_expand(args.body)
-            end,
           },
         })
       end
@@ -320,7 +298,33 @@ require("mason-lspconfig").setup({
   },
 })
 
-require('onedark').setup {
-  style = 'darker'
+require("nvim-treesitter.configs").setup {
+  auto_install = true,
+  ensure_installed = {
+    "astro",
+    "bash",
+    "css",
+    "dockerfile",
+    "go",
+    "html",
+    "javascript",
+    "json",
+    "lua",
+    "markdown",
+    "python",
+    "rust",
+    "scss",
+    "toml",
+    "tsx",
+    "typescript",
+    "yaml"
+  },
+  highlight = {
+      enable = true,
+    }
 }
-require('onedark').load()
+
+require("onedark").setup {
+  style = "darker"
+}
+require("onedark").load()
