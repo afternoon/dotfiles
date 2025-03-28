@@ -185,7 +185,7 @@ require("lazy").setup({
       dependencies = { "nvim-lua/plenary.nvim" }
     },
 
-    -- tpope: vim plugin artist
+    -- tpope: Vim plugin artist
     { "tpope/vim-abolish" },
     { "tpope/vim-commentary" },
     { "tpope/vim-repeat" },
@@ -194,8 +194,9 @@ require("lazy").setup({
 
     -- file tree viewer
     {
-      "kyazdani42/nvim-tree.lua",
-      dependencies = { "kyazdani42/nvim-web-devicons" },
+      "nvim-tree/nvim-tree.lua",
+      lazy = false,
+      dependencies = { "nvim-tree/nvim-web-devicons" },
       opts = {},
     },
 
@@ -229,7 +230,7 @@ require("lazy").setup({
       config = true,
     },
 
-    -- tpope: ai plugin artist
+    -- tpope: AI plugin artist
     { "github/copilot.vim" },
 
     -- lsp-zero v4
@@ -278,6 +279,12 @@ require("lazy").setup({
   },
 })
 
+-- load onedark theme, for some reason I can't get the lazy.nvim config to do this automatically
+require("onedark").setup {
+  style = "darker"
+}
+require("onedark").load()
+
 -- configure lspzero
 local lsp_zero = require("lsp-zero")
 lsp_zero.extend_lspconfig({
@@ -323,8 +330,3 @@ require("nvim-treesitter.configs").setup {
       enable = true,
     }
 }
-
-require("onedark").setup {
-  style = "darker"
-}
-require("onedark").load()
