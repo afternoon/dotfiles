@@ -205,7 +205,8 @@ require("lazy").setup({
     -- file tree viewer
     {
       "kyazdani42/nvim-tree.lua",
-      dependencies = { "kyazdani42/nvim-web-devicons" }
+      dependencies = { "kyazdani42/nvim-web-devicons" },
+      opts = {}
     },
 
     -- git info in gutter
