@@ -46,6 +46,16 @@ config.window_padding = {
 -- Enable Option key text insertion, see https://github.com/wez/wezterm/issues/3866
 config.send_composed_key_when_left_alt_is_pressed = true
 
+-- map opt-left/right to jump around terminal words
+-- see https://wezterm.org/config/lua/keyassignment/SendString.html
+local act = wezterm.action
+config.keys = {
+  -- Make Option-Left equivalent to Alt-b which many line editors interpret as backward-word
+  { key = 'LeftArrow', mods = 'OPT', action = act.SendString '\x1bb' },
+  -- Make Option-Right equivalent to Alt-f; forward-word
+  { key = 'RightArrow', mods = 'OPT', action = act.SendString '\x1bf' },
+}
+
 config.window_close_confirmation = 'NeverPrompt'
 
 config.native_macos_fullscreen_mode = true
