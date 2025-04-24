@@ -1,4 +1,4 @@
-export LOCAL_PREFIX=${HOMEBREW_PREFIX:-/usr}
+export LOCAL_PREFIX=${HOMEBREW_PREFIX:-/usr{{ if eq .chezmoi.os "darwin" }}/local{{ end }}}
 export EDITOR="$LOCAL_PREFIX/bin/nvim"
 export PATH="$PATH:$HOME/.local/bin"
 
