@@ -200,9 +200,18 @@ require("lazy").setup({
       opts = {},
     },
 
+    -- fugitive
+    { "tpope/vim-fugitive" },
+
     -- git info in gutter
     {
       "lewis6991/gitsigns.nvim",
+      dependencies = { "nvim-lua/plenary.nvim" },
+    },
+
+    -- fancy git diff view
+    {
+      "sindrets/diffview.nvim",
       dependencies = { "nvim-lua/plenary.nvim" },
     },
 
