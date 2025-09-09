@@ -95,6 +95,9 @@ map {"n", "<C-j>", "<C-w>j"}
 map {"n", "<C-k>", "<C-w>k"}
 map {"n", "<C-l>", "<C-w>l"}
 
+-- tab management
+map {"n", "<Leader>tc", ":tabclose<CR>"}
+
 -- move between buffers with J/K
 map {"n", "<S-l>", ":bnext<CR>"}
 map {"n", "<S-h>", ":bprev<CR>"}
@@ -120,6 +123,10 @@ map {"n", "<Leader>x", ":cclose<CR>"}
 
 -- toggle file tree view
 map {"n", "<Leader><Space>", ":NvimTreeToggle<CR>"}
+
+-- git
+map {"n", "<Leader>gd", ":DiffviewOpen<CR>"}
+map {"n", "<Leader>gc", ":Git commit<CR>"}
 
 -- show search results in the centre of the window
 map {"n", "n", "nzz"}
@@ -241,6 +248,9 @@ require("lazy").setup({
 
     -- tpope: AI plugin artist
     { "github/copilot.vim" },
+
+    -- ale for linting and formatting
+    { "dense-analysis/ale" },
 
     -- lsp-zero v4
     { "VonHeikemen/lsp-zero.nvim", branch = "v4.x" },
