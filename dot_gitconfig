@@ -26,6 +26,7 @@
     l = log --graph --oneline --pretty=dense
     l1 = log -1 --oneline --pretty=dense
     la = log --graph --oneline --pretty=dense --all
+    p = push
     pr = pull --rebase
     rh = reset --hard
     st = status --short --ignore-submodules
