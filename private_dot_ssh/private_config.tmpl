@@ -3,4 +3,5 @@ Host github.com
 {{- if eq .chezmoi.os "darwin" }}
   AddKeysToAgent yes
   UseKeychain yes
+  IgnoreUnknown UseKeychain
 {{- end }}
