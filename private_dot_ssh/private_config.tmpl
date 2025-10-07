@@ -1,7 +1,3 @@
 Host github.com
   IdentityFile ~/.ssh/id_ed25519
-{{- if eq .chezmoi.os "darwin" }}
   AddKeysToAgent yes
-  UseKeychain yes
-  IgnoreUnknown UseKeychain
-{{- end }}
