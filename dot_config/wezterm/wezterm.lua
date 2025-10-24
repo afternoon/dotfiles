@@ -44,7 +44,8 @@ config.window_padding = {
 }
 
 -- Enable Option key text insertion, see https://github.com/wez/wezterm/issues/3866
-config.send_composed_key_when_left_alt_is_pressed = true
+config.send_composed_key_when_left_alt_is_pressed = false
+config.send_composed_key_when_right_alt_is_pressed = true
 
 -- map opt-left/right to jump around terminal words
 -- see https://wezterm.org/config/lua/keyassignment/SendString.html
