@@ -1,4 +1,13 @@
-theme = "onedarker"
+theme = "onedarkerer"
+# theme = "flexoki_dark"
+# theme = "onedarker"
+# theme = "everblush"
+# theme = "adwaita-dark"
+# theme = "gruvbox_dark_hard"
+# theme = "iroaseta"
+# theme = "jellybeans"
+# theme = "jetbrains_dark"
+# theme = "molokai"
 
 [editor]
 color-modes = true
