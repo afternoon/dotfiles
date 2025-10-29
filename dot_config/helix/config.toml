@@ -35,3 +35,4 @@ display-inlay-hints = false
 w = ":write"
 q = ":quit"
 r = ":reload-all"
+c = ":buffer-close"
