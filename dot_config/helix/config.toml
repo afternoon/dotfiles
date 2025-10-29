@@ -30,3 +30,8 @@ cursor-line = "warning"
 
 [editor.lsp]
 display-inlay-hints = false
+
+[keys.normal.f]
+w = ":write"
+q = ":quit"
+r = ":reload-all"
