@@ -1,6 +1,6 @@
 [user]
-  name = Ben Godfrey
-  email = ben@ben2.com
+    name = Ben Godfrey
+    email = ben@ben2.com
 
 [core]
     excludesfile = ~/.gitignore
@@ -34,6 +34,9 @@
 
 [difftool]
     prompt = false
+
+[pull]
+    rebase = true
 
 [push]
     default = simple
