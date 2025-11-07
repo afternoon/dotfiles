@@ -5,7 +5,6 @@
 [core]
     excludesfile = ~/.gitignore
     quotepath = false
-    editor = /usr/local/bin/nvim
 
 [pretty]
     dense = %C(yellow)%h%Creset%Cred%d%Creset %Cblue%an%Creset %s %Cgreen(%cr)%Creset
@@ -39,9 +38,5 @@
 [push]
     default = simple
 
-[tig "bind"]
-    main = s view-status
-    generic = S !git sync
-    generic = U !git up
 [init]
 	defaultBranch = main
