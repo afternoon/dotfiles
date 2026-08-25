@@ -1,0 +1,7 @@
+[plugin]
+deps = []
+
+[[flavor.deps]]
+use = "Raideeen/dimidium"
+rev = "a9a7a22"
+hash = "3ba3a757f194a67401c003894b0cc2a4"
