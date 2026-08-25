@@ -1,37 +1,23 @@
-[language-server]
-biome = { command = "biome", args = ["lsp-proxy"] }
-
 [[language]]
 name = "html"
 auto-format = true
-language-servers = [ { name = "vscode-html-language-server", except-features = [ "format", ] }, "prettier" ]
-formatter = { command = "prettier", args = [ "--stdin-filepath", "%{buffer_name}" ] }
 
 [[language]]
 name = "javascript"
 auto-format = true
-language-servers = [ { name = "typescript-language-server", except-features = [ "format", ] }, "biome" ]
-formatter = { command = "bunx", args = [ "biome", "format", "--stdin-file-path", "%{buffer_name}" ] }
 
 [[language]]
 name = "typescript"
 auto-format = true
-language-servers = [ { name = "typescript-language-server", except-features = [ "format", ] }, "biome" ]
-formatter = { command = "bunx", args = [ "biome", "format", "--stdin-file-path", "%{buffer_name}" ] }
 
 [[language]]
 name = "tsx"
 auto-format = true
-language-servers = [ { name = "typescript-language-server", except-features = [ "format", ] }, "biome" ]
-formatter = { command = "bunx", args = [ "biome", "format", "--stdin-file-path", "%{buffer_name}" ] }
 
 [[language]]
 name = "jsx"
 auto-format = true
-language-servers = [ { name = "typescript-language-server", except-features = [ "format", ] }, "biome" ]
-formatter = { command = "bunx", args = [ "biome", "format", "--stdin-file-path", "%{buffer_name}" ] }
 
 [[language]]
 name = "json"
-language-servers = [ { name = "typescript-language-server", except-features = [ "format", ] }, "biome" ]
-formatter = { command = "bunx", args = [ "biome", "format", "--stdin-file-path", "%{buffer_name}" ] }
+auto-format = true

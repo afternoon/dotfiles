@@ -22,17 +22,23 @@ after-delay.enable = true
 insert = "bar"
 normal = "block"
 
-[editor.file-picker]
-hidden = false
-
 [editor.inline-diagnostics]
 cursor-line = "warning"
 
 [editor.lsp]
 display-inlay-hints = false
 
+[keys.insert]
+"§" = "normal_mode"
+
+[keys.normal]
+"C-r" = ":reload-all"
+
 [keys.normal.f]
-w = ":write"
-q = ":quit"
-r = ":reload-all"
 c = ":buffer-close"
+q = ":quit"
+r = ":reload"
+R = ":reload-all"
+s = ":toggle soft-wrap.enable"
+w = ":write"
+

@@ -2,10 +2,10 @@
 
 "attribute" = { fg = "yellow" }
 "comment" = { fg = "light-gray", modifiers = ["italic"] }
-"constant" = { fg = "gold" }
-"constant.numeric" = { fg = "gold" }
-"constant.builtin" = { fg = "gold" }
-"constant.character.escape" = { fg = "gold" }
+"constant" = { fg = "green" }
+"constant.numeric" = { fg = "green" }
+"constant.builtin" = { fg = "green" }
+"constant.character.escape" = { fg = "green" }
 "constructor" = { fg = "blue" }
 "function" = { fg = "blue" }
 "function.builtin" = { fg = "yellow" }
@@ -23,8 +23,8 @@
 "tag" = { fg = "purple" }
 "type" = { fg = "yellow" }
 "variable" = { fg = "white" }
-"variable.builtin" = { fg = "red" }
-"variable.parameter" = { fg = "red" }
+"variable.builtin" = { fg = "orange" }
+"variable.parameter" = { fg = "orange" }
 "variable.other.member" = { fg = "blue" }
 
 "markup.heading" = { fg = "red" }
@@ -43,17 +43,17 @@
 "diff.delta" = "gold"
 "diff.minus" = "red"
 
-"diagnostic.info".underline = { color = "blue", style = "curl" }
-"diagnostic.hint".underline = { color = "green", style = "curl" }
-"diagnostic.warning".underline = { color = "yellow", style = "curl" }
-"diagnostic.error".underline = { color = "red", style = "curl" }
+"diagnostic.info".underline = { color = "light-gray", style = "curl" }
+"diagnostic.hint".underline = { color = "light-gray", style = "curl" }
+"diagnostic.warning".underline = { color = "light-gray", style = "curl" }
+"diagnostic.error".underline = { color = "light-gray", style = "curl" }
 "diagnostic.unnecessary" = { modifiers = ["dim"] }
 "diagnostic.deprecated" = { modifiers = ["crossed_out"] }
 
-"info" = { fg = "blue", modifiers = ["bold"] }
-"hint" = { fg = "green", modifiers = ["bold"] }
-"warning" = { fg = "yellow", modifiers = ["bold"] }
-"error" = { fg = "red", modifiers = ["bold"] }
+"info" = { fg = "dark-red", modifiers = ["italic"] }
+"hint" = { fg = "dark-red", modifiers = ["italic"] }
+"warning" = { fg = "dark-red", modifiers = ["italic"] }
+"error" = { fg = "dark-red", modifiers = ["italic"] }
 
 "ui.background" = { bg = "black" }
 "ui.virtual" = { fg = "faint-gray" }
@@ -101,9 +101,11 @@
 yellow = "#D5B06B"
 blue = "#519FDF"
 red = "#D05C65"
+dark-red = "#914046"
 purple = "#B668CD"
 green = "#7DA869"
 gold = "#D19A66"
+orange = "#D18666"
 cyan = "#46A6B2"
 white = "#ABB2BF"
 black = "#1F2329"
