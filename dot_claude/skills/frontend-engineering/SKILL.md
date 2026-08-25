@@ -243,8 +243,9 @@ tokens, base, layout, components, utilities;`. `tokens` paints nothing; `layout`
 handles shells and grids without colour. Layers make specificity a non-issue,
 which is most of why `!important` exists.
 
-Max two levels of nesting, `&` explicit. No ID selectors, no `!important`, no
-element selectors in `components`. Name internal parts `.card__header`. Prefer
+Max 4 levels of nesting, `&` explicit. No ID selectors, no `!important`, no
+element selectors in `components`. Don't use compound class names like "btn__inner"
+or "btn--variant". Just use simple kebab-case classnames and nesting. Prefer
 `@container` over media queries for component-level responsiveness. Variants and
 state are data attributes — `.btn[data-variant="destructive"]`, not
 `.btn-destructive`; it matches what headless libraries expose and avoids
@@ -252,6 +253,8 @@ conditional class-string building. Dark mode is token overrides only — `.dark 
 --card: oklch(0.205 0 0); }`, never `.dark .card { … }`; a component needing a
 theme-specific rule is missing a token. Use `oklch()` for new colours, deriving
 shades rather than adding tokens: `oklch(from var(--btn-bg) calc(l - 0.05) c h)`.
+
+
 
 ### Units
 
@@ -299,7 +302,8 @@ business rule.
 
 Describable in one sentence with no "and". Symptoms of too much: section
 comments separating its parts, a prop affecting only one branch, or both
-fetching data and styling it.
+fetching data and styling it. Prefer 1 component per file, unless components are
+trivial and only used in one place.
 
 **100 lines is the ceiling.** Past it the excess is almost always stateful
 behaviour rather than markup — interlocking `useState` calls, an effect
