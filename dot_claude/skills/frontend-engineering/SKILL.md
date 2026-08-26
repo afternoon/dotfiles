@@ -1,6 +1,6 @@
 ---
 name: frontend-engineering
-description: House conventions for writing frontend code — TypeScript by default with Zod schemas parsing every untrusted input, a default toolkit (React, TanStack Query with Suspense, shadcn/ui, Lucide, Flexoki), CSS built on design tokens, sensible units, small components under 100 lines with business logic extracted to plain modules and stateful behaviour to hooks, memoization left to the React Compiler, layered error boundaries, hand-rolled forms validated by a Zod schema against a touched-field set, readable URLs that carry view state, correct ARIA and keyboard accessibility, and behaviour-focused tests. Use this skill whenever implementing, refactoring, or reviewing any UI code, in any framework (React, Solid, Vue, Svelte, plain DOM), and whenever writing or changing stylesheets, building components, building or validating a form, wiring routing or filters, adding frontend tests, choosing a UI library or adding a dependency, fetching data from an API, handling loading or error states, typing or validating data that arrives from an API, URL, storage or message, or making an interface accessible — even when the request is just "add a button" or "fix this styling" and doesn't mention conventions at all.
+description: House conventions for writing frontend code — TypeScript by default with Zod schemas parsing every untrusted input, a default toolkit (React, TanStack Query with Suspense, shadcn/ui, Lucide, Flexoki), CSS built on design tokens, sensible units, small components under 100 lines with business logic extracted to plain modules and stateful behaviour to hooks past ~300 lines, named handlers instead of inline JSX functions, filenames matching what they declare, memoization left to the React Compiler, layered error boundaries, hand-rolled forms validated by a Zod schema against a touched-field set, readable URLs that carry view state, correct ARIA and keyboard accessibility, and behaviour-focused tests. Use this skill whenever implementing, refactoring, or reviewing any UI code, in any framework (React, Solid, Vue, Svelte, plain DOM), and whenever writing or changing stylesheets, building components, building or validating a form, wiring routing or filters, adding frontend tests, choosing a UI library or adding a dependency, fetching data from an API, handling loading or error states, typing or validating data that arrives from an API, URL, storage or message, or making an interface accessible — even when the request is just "add a button" or "fix this styling" and doesn't mention conventions at all.
 ---
 
 # Frontend engineering
@@ -305,9 +305,14 @@ comments separating its parts, a prop affecting only one branch, or both
 fetching data and styling it. Prefer 1 component per file, unless components are
 trivial and only used in one place.
 
-**100 lines is the ceiling.** Past it the excess is almost always stateful
+**100 lines is the ceiling.** Past it, look first for a second responsibility
+to split into its own component — a long flat run of markup is a component
+problem, not a hook problem.
+
+**Extract a hook at around 300 lines**, or sooner if the stateful behaviour is
+reusable or independently testable. That much file is almost always stateful
 behaviour rather than markup — interlocking `useState` calls, an effect
-coordinating them, handlers operating on them. Extract that into a custom hook,
+coordinating them, handlers operating on them. Pull that into a custom hook,
 leaving the component as JSX plus a call to it:
 
 ```tsx
@@ -318,8 +323,26 @@ function DataTable({ rows }: Props) {
 ```
 
 A hook is for *stateful* behaviour — logic touching neither state nor the
-framework belongs in a plain module, which is cheaper still. A long component
-that's one flat run of markup isn't a hook problem; split it into components.
+framework belongs in a plain module, which is cheaper still.
+
+### Handlers are named, not inlined
+
+**Don't define functions inside JSX beyond a simple one-liner.** A short
+forwarding arrow — `onClick={(e) => select(row.id, e.shiftKey)}` — is fine and
+often clearer than a named wrapper. Anything with a body, a branch, an `await`,
+or more than one statement gets a named function above the return, so the markup
+stays a readable outline and the logic gets a name that says what it does.
+
+```tsx
+/* ✗ */ <button onClick={async () => {
+          const parsed = Filters.parse(draft);
+          if (!parsed.success) return setError(parsed.error);
+          await save(parsed.data);
+        }}>Save</button>
+
+/* ✓ */ async function handleSave() { … }
+        <button onClick={handleSave}>Save</button>
+```
 
 ### Structure
 
@@ -342,6 +365,22 @@ untested and some nonsensical.
 /* ✗ */ <Card title="Run" showFooter footerAction="retry" collapsible />
 /* ✓ */ <Card><CardHeader>Run</CardHeader><CardFooter>…</CardFooter></Card>
 ```
+
+### Filenames match what they declare
+
+A file is named after its main export, so the import statement and the file tree
+agree and a search for the symbol finds the file.
+
+- **Components: `PascalCase.tsx`** — `RunTable.tsx` exports `RunTable`.
+- **Everything else: `camelCase`** — `useTableSelection.ts` exports
+  `useTableSelection`, `formatCurrency.ts` exports `formatCurrency`.
+- **Tests and stories keep the subject's name** plus a suffix:
+  `RunTable.test.tsx`, `useTableSelection.test.ts`.
+- A module deliberately grouping several related exports is named for the group
+  (`pricing.ts`, `dateFormats.ts`), still camelCase.
+
+Follow the project's existing convention where it has one — consistency inside a
+codebase beats this default.
 
 ### Let the React Compiler memoize
 
@@ -580,7 +619,12 @@ the results once the search completes')`, not `it('sets isLoading to false')`.
       route inside the layout, so a page crash leaves the nav usable.
 - [ ] Business logic in plain modules with no framework imports.
 - [ ] Each component has one responsibility and is under 100 lines; stateful
-      behaviour past that is extracted into a hook.
+      behaviour is extracted into a hook once a file approaches ~300 lines, or
+      sooner if it's reusable.
+- [ ] No inline functions in JSX beyond simple one-liners; anything longer is a
+      named handler.
+- [ ] Filenames match what they declare: `PascalCase.tsx` for components,
+      `camelCase.ts(x)` for everything else.
 - [ ] No new `memo`, `useMemo`, or `useCallback` — any hand-written memoization
       has a measurement or correctness reason.
 - [ ] Filters, sort, tabs, pagination in the URL and surviving a reload; URL read
