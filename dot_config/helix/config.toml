@@ -36,7 +36,7 @@ display-inlay-hints = false
 
 [keys.normal.f]
 c = ":buffer-close"
-q = ":quit"
+q = ":write-quit-all"
 r = ":reload"
 R = ":reload-all"
 s = ":toggle soft-wrap.enable"
