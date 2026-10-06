@@ -61,6 +61,12 @@ config.window_close_confirmation = 'NeverPrompt'
 
 config.native_macos_fullscreen_mode = true
 
+-- Start in fullscreen mode
+wezterm.on('gui-startup', function(cmd)
+  local _, _, window = mux.spawn_window(cmd or {})
+  window:gui_window():toggle_fullscreen()
+end)
+
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 return config
