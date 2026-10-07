@@ -3,4 +3,4 @@
 SETUVAR --export EDITOR:hx
 SETUVAR __fish_initialized:4300
 SETUVAR fish_greeting:\x1d
-SETUVAR fish_user_paths:/Users/ben/\x2ebun/bin\x1e/Users/ben/\x2ecargo/bin\x1e/Users/ben/\x2elocal/bin\x1e/usr/local/bin\x1e/Users/bgodfrey/\x2ecargo/bin\x1e/Users/bgodfrey/\x2ebun/bin\x1e/Users/bgodfrey/\x2elocal/bin\x1e/opt/homebrew/bin
+SETUVAR fish_user_paths:/opt/homebrew/opt/rustup/bin\x1e/Users/ben/\x2ebun/bin\x1e/Users/ben/\x2ecargo/bin\x1e/Users/ben/\x2elocal/bin\x1e/usr/local/bin\x1e/Users/bgodfrey/\x2ecargo/bin\x1e/Users/bgodfrey/\x2ebun/bin\x1e/Users/bgodfrey/\x2elocal/bin\x1e/opt/homebrew/bin
